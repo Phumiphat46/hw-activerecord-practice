@@ -19,9 +19,27 @@ class Customer < ActiveRecord::Base
   def self.any_candice
     # YOUR CODE HERE to return all customer(s) whose first name is Candice
     # probably something like:  Customer.where(....)
+    return Customer.where(first:"Candice")
   end
   def self.with_valid_email
     # YOUR CODE HERE to return only customers with valid email addresses (containing '@')
+    return Customer.where("email like '%@%'")
   end
   # etc. - see README.md for more details
+  def self.with_dot_org_email
+    return Customer.where("email like '%.org'")
+  end
+  def self.with_invalid_email
+    return Customer.where("email not like '%@%'")
+  end
+  def self.with_blank_email
+    return Customer.where(email: nil)
+  end
+  def self.born_before_1980
+    return Customer.where("birthdate < '1980-01-01'")
+  end
+  def self.with_valid_email_and_born_before_1980
+    return Customer.where("email like '%@%' AND birthdate < '1980-01-01'")
+  end
+  def self.with_
 end
